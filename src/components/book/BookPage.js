@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as bookActions from '../../actions/bookActions';
 
 class Book extends Component {
     constructor(props) {
-        //pass props back to parent
         super(props);
     }
 
     //Submit book handler
     submitBook(input){
-        alert('submitted');
+        this.props.createBook(input);
     }
 
     render(){
-        //Title input tracker
         let titleInput;
-
-        //return JSX
         return(
             <div>
                 <h3>Books</h3>
@@ -46,5 +44,19 @@ class Book extends Component {
         );
     }
 }
+//pass the state to our components' props
+const mapStateToProps = (state, ownProps) => ({ 
+    //now can do this.props.books
+    books: state.books
+ });
 
-export default Book;
+ //pass the actions to our components props
+ const mapDispatchToProps = (dispatch) => ({
+     //can now say this.props.createBook
+         createBook: book => dispatch(bookActions.createBook(book));
+ });
+
+ //use connect to put them together
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Book);
