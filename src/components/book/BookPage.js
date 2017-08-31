@@ -48,12 +48,12 @@ class Book extends Component {
 const mapStateToProps = (state, ownProps) => ({ 
     //now can do this.props.books
     books: state.books
- });
+});
 
  //pass the actions to our components props
  const mapDispatchToProps = (dispatch) => ({
-     //can now say this.props.createBook
-         createBook: book => dispatch(bookActions.createBook(book));
+    //can now say this.props.createBook
+        createBook: book => dispatch(bookActions.createBook(book)),
  });
 
  //use connect to put them together
